@@ -1,28 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="#f2ebeb"
     tools:context="com.example.duzeming.noter.MainActivity">
+
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar_main"
         android:layout_width="match_parent"
         android:layout_height="33dp"
-        android:background="@color/colorPrimary"/>
+        android:background="@color/colorPrimary" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/viewpager_main"
+    <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <android.support.design.widget.TabLayout
-            android:id="@+id/tablayout_main"
+        <android.support.v4.view.ViewPager
+            android:id="@+id/viewpager_main"
             android:layout_width="match_parent"
-            android:layout_height="24dp"
-            android:background="@color/colorPrimary"
-            app:tabTextColor="@color/colorTitle"
-            app:tabIndicatorColor="@color/colorTitle"/>
-    </android.support.v4.view.ViewPager>
+            android:layout_height="match_parent">
+
+            <android.support.design.widget.TabLayout
+                android:id="@+id/tablayout_main"
+                android:layout_width="match_parent"
+                android:layout_height="24dp"
+                android:background="@color/colorPrimary"
+                app:tabIndicatorColor="@color/colorTitle"
+                app:tabTextColor="@color/colorTitle" />
+
+        </android.support.v4.view.ViewPager>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RadioButton
+                android:id="@+id/radio_build"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="10dp"
+                android:button="@null"
+                android:drawableTop="@drawable/ic_build"
+                android:background="@drawable/shape_build"
+                android:gravity="center_horizontal"
+                android:text="新建"/>
+        </RelativeLayout>
+    </FrameLayout>
+
 </LinearLayout>
