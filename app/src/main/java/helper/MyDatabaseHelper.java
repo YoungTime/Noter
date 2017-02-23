@@ -9,7 +9,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  */
 public class MyDatabaseHelper extends SQLiteOpenHelper {
 
-    public static final String CREAT_NOTE="create table note("
+    public static final String CREATE_NOTE="create table note("
             + "id integer primary key autoincrement,"
             +"title text,"
             +"note text,"
@@ -26,7 +26,7 @@ public class MyDatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        db.execSQL(CREAT_NOTE);
+        db.execSQL(CREATE_NOTE);
     }
 
     @Override

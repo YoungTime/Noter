@@ -4,6 +4,10 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import helper.MyDatabaseHelper;
 
 /**
@@ -11,10 +15,11 @@ import helper.MyDatabaseHelper;
  */
 public class SQLMethod {
 
-    private String title;
-    private String note;
-    private String writeTime;
-    private String finishTime;
+    private List<Integer> id;
+    private List<String> title;
+    private List<String> note;
+    private List<String> writeTime;
+    private List<String> finishTime;
     private MyDatabaseHelper myDatabaseHelper;
 
     public SQLMethod(Context context) {
@@ -22,14 +27,20 @@ public class SQLMethod {
     }
 
     public void query() {
-        SQLiteDatabase db = myDatabaseHelper.getReadableDatabase();
+        id=new ArrayList<Integer>();
+        title=new ArrayList<String>();
+        note=new ArrayList<String>();
+        writeTime=new ArrayList<String>();
+        finishTime=new ArrayList<String>();
+        SQLiteDatabase db = myDatabaseHelper.getWritableDatabase();
         Cursor cursor = db.query("Note", null, null, null, null, null, null);
         if (cursor.moveToFirst()) {
             do {
-                title = cursor.getString(cursor.getColumnIndex("title"));
-                note = cursor.getString(cursor.getColumnIndex("note"));
-                writeTime = cursor.getString(cursor.getColumnIndex("writeTime"));
-                finishTime = cursor.getString(cursor.getColumnIndex("finishTime"));
+                id.add(cursor.getInt(cursor.getColumnIndex("id")));
+                title.add(cursor.getString(cursor.getColumnIndex("title")));
+                note.add(cursor.getString(cursor.getColumnIndex("note")));
+                writeTime.add(cursor.getString(cursor.getColumnIndex("writeTime")));
+                finishTime.add(cursor.getString(cursor.getColumnIndex("finishTime")));
             } while (cursor.moveToNext());
         }
 
@@ -58,23 +69,27 @@ public class SQLMethod {
 
     }
 
-    public String getTitle() {
+    public List<String> getTitle() {
         query();
         return title;
     }
 
-    public String getNote() {
+    public List<String> getNote() {
         query();
         return note;
     }
 
-    public String getWriteTime() {
+    public List<String> getWriteTime() {
         query();
         return writeTime;
     }
 
-    public String getFinishTime() {
+    public List<String> getFinishTime() {
         query();
         return finishTime;
+    }
+    public List<Integer> getId(){
+        query();
+        return id;
     }
 }
