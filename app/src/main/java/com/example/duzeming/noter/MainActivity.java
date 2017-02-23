@@ -81,6 +81,8 @@ public class MainActivity extends AppCompatActivity {
         MainAdapter adapter=new MainAdapter(getSupportFragmentManager(),fragmentList,titleList);
         viewPager.setAdapter(adapter);
 
+
+
     }
 
     @Override

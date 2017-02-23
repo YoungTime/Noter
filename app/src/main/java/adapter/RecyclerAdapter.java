@@ -39,6 +39,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> {
         MyViewHolder myViewHolder=new MyViewHolder(view);
         return myViewHolder;
     }
+    public void addData(int pos){
+        notifyItemInserted(pos);
+    }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
