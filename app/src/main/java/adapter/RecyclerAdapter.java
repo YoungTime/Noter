@@ -23,6 +23,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> {
     private List<String>writeTime;
     private List<String>finishTime;
 
+    public interface OnItemClickListener{
+        void onItemClick(View view,int position);
+        void onItemLongClick(View view,int position);
+    }
+
+    private OnItemClickListener onItemClickListener;
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener){
+        this.onItemClickListener=onItemClickListener;
+    }
+
     public RecyclerAdapter(Context context,List<String>titleList
             ,List<String>noteList,List<String>writeTime,List<String>finishTime){
         this.context=context;
@@ -42,14 +52,41 @@ public class RecyclerAdapter extends RecyclerView.Adapter<MyViewHolder> {
     public void addData(int pos){
         notifyItemInserted(pos);
     }
+    public void removeData(int pos){
+        notifyItemRemoved(pos);
+    }
+
+    public void upDate(List<String > titleList,List<String > noteList,List<String > writeTime,
+                       List<String > finishTime){
+        this.titleList=titleList;
+        this.noteList=noteList;
+        this.writeTime=writeTime;
+        this.finishTime=finishTime;
+    }
 
     @Override
-    public void onBindViewHolder(MyViewHolder holder, int position) {
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
         holder.title.setText(titleList.get(position));
         holder.note.setText(noteList.get(position));
         holder.writeTime.setText(writeTime.get(position));
         holder.finishTime.setText(finishTime.get(position));
 
+        if(onItemClickListener!=null){
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onItemClickListener.onItemClick(holder.itemView,position);
+            }
+        });
+            holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    onItemClickListener.onItemLongClick(holder.itemView,position);
+                    return false;
+                }
+            });
+        }
     }
 
     @Override

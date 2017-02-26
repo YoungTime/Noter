@@ -66,8 +66,6 @@ public class NewActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.btn_new_save:
                 sqlMethod.addData(inputTitle.getText().toString(),inputNote.getText().toString(),
                         year + "年" + month + 1 + "月" + day + "日" + hour + ":" + minute,null);
-                Intent intent=new Intent(NewActivity.this,MainActivity.class);
-                startActivity(intent);
                 finish();
                 break;
             case R.id.btn_new_cancel:

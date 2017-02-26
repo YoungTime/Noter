@@ -66,7 +66,6 @@ public class SQLMethod {
     }
 
     public void delete() {
-
     }
 
     public List<String> getTitle() {
